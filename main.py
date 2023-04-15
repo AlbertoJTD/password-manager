@@ -1,12 +1,22 @@
 from tkinter import *
+from tkinter import messagebox
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
-    with open('data.txt', mode='a') as file:
-        file.write(f'{website_input.get()} | {user_input.get()} | {password_input.get()}\n')
-    clean_fields()
+    website = website_input.get().strip()
+    user = user_input.get().strip()
+    password = password_input.get().strip()
+
+    if website == '' or user == '' or password == '':
+        messagebox.showinfo(title='Oops', message="Please don't let any fields empty!")
+    else:
+        confirm_info = messagebox.askokcancel(title=website, message=f'These are the details entered:\n\nEmail: {user} \nPassword: {password} \n\nIs it ok to save?')
+        if confirm_info:
+            with open('data.txt', mode='a') as file:
+                file.write(f'{website} | {user} | {password}\n')
+            clean_fields()
 
 def clean_fields():
     website_input.delete(0, END)
