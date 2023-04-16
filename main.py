@@ -52,7 +52,7 @@ window.config(padx=40, pady=40)
 # Add image to the background
 canvas = Canvas(width=220, height=300)
 image = PhotoImage(file="lock.png")
-canvas.create_image(112, 130, image=image)
+canvas.create_image(116, 130, image=image)
 canvas.grid(row=0, column=1)
 
 
@@ -75,13 +75,13 @@ user_input.insert(0, 'user@mail.com')
 
 
 # Password
-password_label = Label(text='Password: ')
+password_label = Label(text='Password:')
 password_label.grid(row=3, column=0)
 
-password_input = Entry(width=35)
-password_input.grid(row=3, column=1, columnspan=2)
+password_input = Entry(width=20)
+password_input.grid(row=3, column=1)
 
-password_button = Button(text='Generate Password', command=password_generator)
+password_button = Button(text='Generate Password', command=password_generator, width=11)
 password_button.grid(row=3, column=2)
 
 
