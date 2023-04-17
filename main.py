@@ -40,15 +40,21 @@ def save():
     else:
         confirm_info = messagebox.askokcancel(title=website, message=f'These are the details entered:\n\nEmail: {user} \nPassword: {password} \n\nIs it ok to save?')
         if confirm_info:
-            with open('data.json', 'r') as file:
-                # Reading old data
-                data = json.load(file)
+            try:
+                with open('data.json', 'r') as file:
+                    # Reading old data
+                    data = json.load(file)
+            except FileNotFoundError:
+                # Create new JSON file
+                with open('data.json', 'w') as file:
+                    json.dump(new_date, file, indent=4)
+            else:
                 # Updating old data with new data
                 data.update(new_date)
-
-            with open('data.json', 'w') as file:
-                # Saving updated data
-                json.dump(data, file, indent=4)
+                with open('data.json', 'w') as file:
+                    # Saving updated data
+                    json.dump(data, file, indent=4)
+            finally:
                 clean_fields()
 
 
